@@ -5,10 +5,13 @@ declare const module: any;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const port = process.env.PORT;
+  const PORT = process.env.PORT;
+  console.log(PORT);
 
-  await app.listen(port);
-  console.log(`🔰listening on port ${port}`);
+  app.useGlobalPipes();
+
+  await app.listen(PORT);
+  console.log(`🔰listening on port ${PORT}`);
 
   if (module.hot) {
     module.hot.accept();

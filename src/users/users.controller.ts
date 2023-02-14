@@ -13,7 +13,8 @@ export class UsersController {
 
   @Post()
   postUsers(@Body() data: JoinRequestDto) {
-    this.usersService.postUsers(data.email, data.nickname, data.password);
+    const { email, nickname, password } = data;
+    this.usersService.createUsers(email, nickname, password);
   }
 
   @Post('login')
