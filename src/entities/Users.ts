@@ -1,16 +1,32 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity({ schema: 'chatapp', name: 'users' })
 export class Users {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
   id: number;
 
-  @Column()
+  @Column('varchar', { name: 'email', unique: true, length: 30 })
   email: string;
 
-  @Column()
+  @Column('varchar', { name: 'nickname', length: 20 })
   nickname: string;
 
-  @Column()
+  @Column('varchar', { name: 'password', length: 70 })
   password: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date | null;
 }

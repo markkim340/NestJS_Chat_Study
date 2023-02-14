@@ -7,6 +7,7 @@ import { UsersModule } from './users/users.module';
 import { DmsModule } from './dms/dms.module';
 import { ChannelsModule } from './channels/channels.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     UsersModule,
     DmsModule,
     ChannelsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

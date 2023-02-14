@@ -1,6 +1,16 @@
+import { LocalAuthGuard } from './../auth/local-auth.gaurd';
 import { JoinRequestDto } from './dto/join.request.dto';
-import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Req,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
+import { getUsers } from 'src/common/users.decorator';
 
 @Controller('users')
 export class UsersController {
@@ -11,15 +21,16 @@ export class UsersController {
     return req.user;
   }
 
-  @Post()
+  @Post() //회원가입
   postUsers(@Body() data: JoinRequestDto) {
     const { email, nickname, password } = data;
-    this.usersService.createUsers(email, nickname, password);
+    return this.usersService.createUsers(email, nickname, password);
   }
 
-  @Post('login')
-  logIn(@Req() req) {
-    return req.user;
+  @UseGuards(LocalAuthGuard)
+  @Post('login') //로그인
+  logIn(@getUsers() user) {
+    return user;
   }
 
   @Post('logout')
