@@ -16,7 +16,6 @@ export class AuthService {
       select: ['id', 'email', 'password'],
     });
 
-    console.log('TEST:', user);
     if (!user) {
       return null;
     }

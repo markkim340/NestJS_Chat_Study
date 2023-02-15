@@ -1,3 +1,4 @@
+import { NotLoggedInGaurd } from './../auth/not-logged-in.guard';
 import { LocalAuthGuard } from './../auth/local-auth.gaurd';
 import { JoinRequestDto } from './dto/join.request.dto';
 import {
@@ -22,6 +23,7 @@ export class UsersController {
     return req.user;
   }
 
+  @UseGuards(NotLoggedInGaurd)
   @Post() //회원가입
   postUsers(@Body() data: JoinRequestDto) {
     const { email, nickname, password } = data;
@@ -31,7 +33,7 @@ export class UsersController {
   @UseGuards(LocalAuthGuard)
   @Post('login') //로그인
   logIn(@getUsers() user: Users) {
-    console.log('TEST:');
+    // console.log('TEST:', user);
     return user;
   }
 

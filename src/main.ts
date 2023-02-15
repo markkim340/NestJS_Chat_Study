@@ -4,6 +4,8 @@ import { AppModule } from './app.module';
 import * as passport from 'passport';
 import * as session from 'express-session';
 import * as cookieParser from 'cookie-parser';
+import * as mysqlStore from 'express-mysql-session';
+import { sessionStoreOptions } from './common/sessionStoreOptions';
 
 declare const module: any;
 
@@ -23,6 +25,7 @@ async function bootstrap() {
       cookie: {
         httpOnly: true,
       },
+      store: new mysqlStore(sessionStoreOptions),
     }),
   );
   app.use(passport.initialize());
