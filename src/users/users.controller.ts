@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { getUsers } from 'src/common/users.decorator';
+import { Users } from 'src/entities/Users';
 
 @Controller('users')
 export class UsersController {
@@ -29,7 +30,8 @@ export class UsersController {
 
   @UseGuards(LocalAuthGuard)
   @Post('login') //로그인
-  logIn(@getUsers() user) {
+  logIn(@getUsers() user: Users) {
+    console.log('TEST:');
     return user;
   }
 
