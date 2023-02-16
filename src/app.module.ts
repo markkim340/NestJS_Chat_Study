@@ -4,7 +4,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoggerMiddleware } from './middlewares/logger.middleware';
 import { UsersModule } from './users/users.module';
-import { DmsModule } from './dms/dms.module';
 import { ChannelsModule } from './channels/channels.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
@@ -27,7 +26,6 @@ import { AuthModule } from './auth/auth.module';
       logging: true,
     }),
     UsersModule,
-    DmsModule,
     ChannelsModule,
     AuthModule,
   ],

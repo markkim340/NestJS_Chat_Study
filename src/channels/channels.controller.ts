@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ChannelsService } from './channels.service';
 import { CreateChannelDto } from './dto/create-channel.dto';
 import { UpdateChannelDto } from './dto/update-channel.dto';
@@ -8,8 +16,8 @@ export class ChannelsController {
   constructor(private readonly channelsService: ChannelsService) {}
 
   @Post()
-  create(@Body() createChannelDto: CreateChannelDto) {
-    return this.channelsService.create(createChannelDto);
+  createChannels(@Body() createChannelDto: CreateChannelDto) {
+    return this.channelsService.createChannels(createChannelDto);
   }
 
   @Get()
